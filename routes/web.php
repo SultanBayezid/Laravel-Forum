@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +27,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
  
 
-Route::resource('posts', PostController::class);
+
+    Route::resource('posts', PostController::class);
+    Route::resource('comments', CommentController::class);
+
+    Route::get('user/edit/', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('user/update', [UserController::class, 'update'])->name('user.update');
+    Route::put('user/update-password', [UserController::class, 'changePassword'])->name('user.update.password');
+
+
+
   
 
 
