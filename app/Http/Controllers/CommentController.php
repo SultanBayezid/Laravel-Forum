@@ -39,7 +39,7 @@ class CommentController extends Controller
         $comment->comment = $request->comment;
         $comment->user_id = auth::user()->id;
         $comment->save();
-
+        $comment->sendNotificationToPostOwner();
         return redirect()->back()->with('success', 'Comment posted successfully');
     }
 
