@@ -50,7 +50,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('posts.index') }}">
               <i class="feather-briefcase mr-2"></i>
-              <span class="d-none d-lg-inline">Posts</span>
+              <span class="d-none d-lg-inline">Home</span>
             </a>
           </li>
      
@@ -59,13 +59,18 @@
     
           <li class="nav-item dropdown no-arrow ml-1">
             <a class="nav-link dropdown-toggle pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{Auth::user()->name}}
+          {{auth::user()->name}}
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow-sm">
               <div class="p-3 d-flex align-items-center">
                 <div class="font-weight-bold">
-                  <div class="text-truncate">{{Auth::user()->name}}</div>
+                  <div class="text-truncate">{{auth::user()->name}}</div>
                   <div class="small text-gray-500">{{auth::user()->email}}</div>
+                  @if(auth()->user()->email_verified_at)
+                        <div class="small green">Verified</div>
+                  @else
+                        <div class="small red">Unverified</div>
+                  @endif
                 </div>
               </div>
         
@@ -88,6 +93,12 @@
           <li class="nav-item">
         <a class="nav-link" href="{{ route('login') }}">Login</a>
     </li>
+
+    @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
 @endif
         </ul>
      

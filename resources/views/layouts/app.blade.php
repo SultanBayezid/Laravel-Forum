@@ -1,82 +1,101 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <!-- Scripts -->
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Sultan Bayezid">
+    <title>Forum - Assignment Project</title>
+    <link href="{{asset('design/css/feather.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('design/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('design/css/custom.css')}}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container justify-content-center"> 
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('posts.index') }}">
+              <i class="feather-briefcase mr-2"></i>
+              <span class="d-none d-lg-inline">Home</span>
+            </a>
+          </li>
+     
+   
+          @if(Auth::check())
+    
+          <li class="nav-item dropdown no-arrow ml-1">
+            <a class="nav-link dropdown-toggle pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{auth::user()->name}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow-sm">
+              <div class="p-3 d-flex align-items-center">
+                <div class="font-weight-bold">
+                  <div class="text-truncate">{{auth::user()->name}}</div>
+                  <div class="small text-gray-500">{{auth::user()->email}}</div>
+                  @if(auth()->user()->email_verified_at)
+                        <div class="small green">Verified</div>
+                  @else
+                        <div class="small red">Unverified</div>
+                  @endif
+                </div>
+              </div>
+        
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        
+                <i class="feather-log-out mr-1"></i>  {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+            </div>
 
-                    </ul>
+           
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                          
+          </li>
+          @else
+          <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}">Login</a>
+    </li>
 
-                            @if (Route::has('register'))
+    @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+@endif
+        </ul>
+     
     </div>
+</nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <div class="py-4">
+        <div class="container">
+            <div class="row">
+                <main class="col col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 mx-auto">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @yield('content')
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="{{asset('design/js/jquery-3.6.0.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('design/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+    @stack('scripts')
+
 </body>
 </html>

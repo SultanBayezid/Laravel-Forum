@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,23 +18,20 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
- 
 
 
-    Route::resource('posts', PostController::class);
+Auth::routes([
+    'verify' => true
+]);
+
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+
+Route::group(['middleware' => ['auth', 'verified']], function() {
+    Route::resource('posts', PostController::class)->except(['show', 'index']);
     Route::resource('comments', CommentController::class);
 
-    Route::get('user/edit/', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('user/update', [UserController::class, 'update'])->name('user.update');
-    Route::put('user/update-password', [UserController::class, 'changePassword'])->name('user.update.password');
+});
 
 
 
