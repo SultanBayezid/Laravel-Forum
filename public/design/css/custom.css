@@ -4,3 +4,17 @@
     color: #dc3545;
     font-weight: bolder;
 }
+
+.red {
+    color:#a30111;
+    text-align: center;
+    font-weight: 600;
+
+}
+
+.green {
+    color: green;
+    text-align: center;
+    font-weight: 600;
+
+}

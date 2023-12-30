@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -15,9 +15,7 @@
 
                 <div class="padding-card reviews-card box shadow-sm rounded bg-white mb-3 border-0">
                     <div class="card-body">
-                        <h5 class="card-title mb-4">{{$post->comments()->count() ?? ''}} Comments</h5>
                         <div class="padding-card box shadow-sm rounded bg-white mb-3 border-0">
-                            <div class="card-body">
                                 <h5 class="card-title mb-4">Leave a Comment</h5>
                                 @if(Auth::check())
                                 <!-- Comment form for authenticated users -->
@@ -43,7 +41,7 @@
                                     Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to make a comment.
                                 </div>
                                 @endif
-                            </div>
+                
                         </div>
                         @foreach($post->comments as $comment)
                         <div class="media mb-4">
