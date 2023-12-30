@@ -6,10 +6,10 @@
         <div class="col-lg-12 col-md-12">
             <div class="blog-card padding-card box shadow-sm rounded bg-white mb-3 border-0">
                 <div class="card-body">
-                    <h2>{{$post->title}}</h2>
-                    <h6 class="mb-3">
-                        <i class="feather-calendar"></i> {{ date('d F Y h:i A', strtotime($post->created_at)) }} / {{$post->comments()->count() ?? ''}} Comments
-                    </h6>
+                    <h4>{{$post->title}}</h4>
+                    <p class="mb-3">
+                    Posted by <span class="green small "><i class="feather-user"></i>  {{$post->user->name ?? ''}} </span>  <span class="small"> <i class="feather-calendar"></i> {{ date('d F Y h:i A', strtotime($post->created_at)) }} / {{$post->comments()->count() ?? ''}} Comments</span>
+</p>
                     <p> {{$post->text}}</p>
                 </div>
 
