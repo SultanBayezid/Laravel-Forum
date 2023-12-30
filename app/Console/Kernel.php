@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('posts:delete-old')->everyMinute(); // Run the command every minute
+        $schedule->command('posts:delete-old')->daily(); // Run the command once a day
     }
 
     /**
