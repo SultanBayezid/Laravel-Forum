@@ -6,6 +6,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\TaskoneController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,15 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 });
 
 
+
+
+// Task 1
+
+Route::get('/problemone', [TaskoneController::class, 'problemOne']);
+Route::get('/problemtwo', [TaskoneController::class, 'problemTwo']);
+Route::post('/problemtwo', [TaskoneController::class, 'problemTwoform'])->name('problemTwoform');
+Route::get('/problemthree', [TaskoneController::class, 'problemThree']);
+Route::post('/problemthree', [TaskoneController::class, 'problemThreeform'])->name('problemThreeform');
 
   
 
