@@ -6,7 +6,7 @@
             <ul class="nav  border-bottom osahan-line-tab" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                        <i class="feather-edit"></i> Post
+                        <i class="feather-edit"></i> Create a new post
                     </a>
                 </li>
             </ul>
@@ -58,7 +58,7 @@
                          Comments     <span class="badge badge-danger badge-counter">{{$post->comments()->count() ?? ''}}</span>
                         </a>
                     </div>
-                    @if(auth()->check() && $post->user_id === auth()->user()->id)
+                    @if(auth()->check() && $post->user_id == auth()->user()->id)
                         <div class="flex-shrink-1">
                             <a href="#" class="btn-link btn edit-post" 
                                 data-postid="{{ $post->id }}" 

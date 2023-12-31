@@ -83,7 +83,7 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id);
 
-        if ($comment && $comment->user_id === auth()->user()->id) {
+        if ($comment && $comment->user_id == auth()->user()->id) {
             $comment->delete();
             return redirect()->back()->with('success', 'Comment deleted successfully');
         }
