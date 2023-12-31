@@ -12,3 +12,27 @@
   <li><strong>Email Verification:</strong> Posting or commenting is restricted to users who have verified their email addresses.</li>
   <li><strong>Automated Cleanup:</strong> Posts inactive for one year without receiving comments are marked for soft deletion to maintain forum cleanliness.</li>
 </ul>
+
+
+
+<section>
+  <h2>Notification System for Comments</h2>
+  <p>
+    Users are notified by email when a new comment is added to one of their posts. This functionality is achieved through a Laravel Notifications feature called 'CommentNotification'. Upon storing a comment, the function <code>$comment->sendNotificationToPostOwner();</code> is executed within the CommentController.
+  </p>
+
+  <p>
+    The application's email notification process is configured in the ".env" file by setting the <code>QUEUE_CONNECTION</code> variable. Initially, it is set to <code>"sync"</code>, which sends emails without any server environment configuration but might slow down the application. To improve performance, an alternative method involves configuring a jobs table for <code>QUEUE_CONNECTION=database</code>. By changing <code>QUEUE_CONNECTION=sync</code> to <code>QUEUE_CONNECTION=database</code> and running <code>php artisan queue:work</code>, emails are queued in the background, enabling faster application loading.
+  </p>
+</section>
+
+<section>
+  <h2>Cleaning Old Posts</h2>
+  <p>
+    To maintain a clean forum, a rule has been established: posts that have not received any comments for one year should be soft-deleted.
+  </p>
+
+  <p>
+    This functionality is implemented using a Laravel Command named 'DeleteOldPosts'. The command's logic for deleting posts meeting the criteria has been implemented. To automate this process, the command has been scheduled in the <code>app/Console/Kernel.php</code> file.
+  </p>
+</section>
