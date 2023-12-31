@@ -30,15 +30,15 @@
 <h2>Answers to Questions</h2>
 
 <h3>Question 1.1</h3>
-<p>Answer: <a href="http://127.0.0.1:8000/problemone">Found here</a></p>
+<p>Answer: http://127.0.0.1:8000/problemone</p>
 
 <h3>Question 1.2</h3>
-<p>Answer: <a href="http://127.0.0.1:8000/probletwo">Found here</a></p>
+<p>Answer: http://127.0.0.1:8000/probletwo</p>
 
 <h3>Question 1.3</h3>
-<p>Answer: <a href="http://127.0.0.1:8000/three">Found here</a></p>
+<p>Answer: http://127.0.0.1:8000/three</p>
 
-<h2>Code Reference</h2>
+
 <p>The code for these answers can be found here: <a href="https://github.com/SultanBayezid/reitmellon/blob/main/app/Http/Controllers/TaskoneController.php">TaskoneController.php</a></p>
 
 </section>
