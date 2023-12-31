@@ -5,7 +5,10 @@
 
 </head>
 <body>
-    <h1>Number Classification</h1>
+   <h2>
+   1.3 Write a program that allows a user to enter an integer and tells them if it is a Harshad number (base
+10).
+   </h2>
     <form method="post" action="{{ route('problemThreeform') }}">
         @csrf
         <label for="number">Enter an integer:</label><br>
