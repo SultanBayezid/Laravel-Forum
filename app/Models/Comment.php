@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\CommentNotification;
+use Illuminate\Support\Facades\Redis;
 
 
 class Comment extends Model

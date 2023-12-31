@@ -8,7 +8,21 @@
                 <div class="card-body">
                     <h4>{{$post->title}}</h4>
                     <p class="mb-3">
-                    Posted by <span class="green small "><i class="feather-user"></i>  {{$post->user->name ?? ''}} </span>  <span class="small"> <i class="feather-calendar"></i> {{ date('d F Y h:i A', strtotime($post->created_at)) }} / {{$post->comments()->count() ?? ''}} Comments</span>
+                    Posted by <span class="green small "><i class="feather-user"></i>  {{$post->user->name ?? ''}} </span>  <span class="small"> <i class="feather-calendar"></i> {{ date('d F Y h:i A', strtotime($post->created_at)) }} / {{$post->comments()->count() ?? ''}} Comments</span>  
+                   
+                    <div class="btn-group">
+                    @if(auth()->check() && $post->user_id == auth()->user()->id) <a class="btn btn-link" href="{{route('posts.edit', $post->id)}}">   <i class="feather-trash"></i> Edit Post</a> 
+                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-link btn" type="submit"  onclick="return confirm('Are you sure you want to delete this post?')">
+                                    <i class="feather-trash"></i> Delete
+                                </button>
+                            </form>
+                        
+                    @endif
+                    </div>
+             
 </p>
                     <p> {{$post->text}}</p>
                 </div>
@@ -50,20 +64,27 @@
                         </div>
 
                             <div class="media-body">
-                                <h5 class="mt-0">{{ $comment->user->name }} <small>{{ date('d F Y h:i A', strtotime($comment->created_at)) }}</small>
+                                <h5 class="mt-0">{{ $comment->user->name }} 
                                 
                                 <div class="btn-group float-right">
-                                    @if(auth()->check() && $comment->user_id === auth()->user()->id)
+                                    @if(auth()->check() && $comment->user_id == auth()->user()->id)
                                     <a href="#" class="btn btn-link edit-comment" data-commentid="{{ $comment->id }}" data-text="{{ $comment->comment }}">Edit</a>
                                     <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button  class="btn btn-link" onclick="return confirm('Are you sure?')">Delete</button>
+                                        <button  class="btn btn-link" onclick="return confirm('Are you sure you want to delete this comment?')">Delete</button>
                                     </form>
                                     @endif
                                 </div>
                                 
                                 </h5>
+                                <div class="small">
+                                Posted on:  <span class="font-italic"> {{ date('d F Y h:i A', strtotime($comment->created_at)) }}</span> <br>
+                                            @if($comment->created_at != $comment->updated_at)
+                                                Updated on: <span class="font-italic text-success">{{ date('d F Y h:i A', strtotime($comment->updated_at)) }}</span>
+                                            @endif
+                                        </div>
+
                                 <p>{{ $comment->comment }}</p>
                             </div>
                         </div>

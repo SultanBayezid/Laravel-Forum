@@ -12,9 +12,18 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <div class="container justify-content-center"> 
-        <ul class="navbar-nav ml-auto d-flex align-items-center">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-primary">
+    <div class="container">
+      <h4><span class="h1">P</span>roject Forum</h4>
+    <ul class="navbar-nav mx-auto mt-3 ">
+    <form action="{{route('search')}}" method="GET" class="mb-4">
+        <div class="input-group">
+        <input type="text" name="search" class="form-control" style="min-width:400px;" placeholder="Search posts with title, text or comments...">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+        </ul>
+        <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="{{ route('posts.index') }}">
               <i class="feather-briefcase mr-2"></i>
@@ -69,9 +78,9 @@
                             @endif
 @endif
         </ul>
-     
     </div>
 </nav>
+
 
 
     <div class="py-4">
