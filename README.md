@@ -16,23 +16,11 @@
 
 
 <section>
-  <h2>Notification System for Comments</h2>
-  <p>
-    Users are notified by email when a new comment is added to one of their posts. This functionality is achieved through a Laravel Notifications feature called 'CommentNotification'. Upon storing a comment, the function <code>$comment->sendNotificationToPostOwner();</code> is executed within the CommentController.
-  </p>
+  <h2>Technical Notes</h2>
+  <p>7. Users are notified by email when a new comment is added to one of their posts. To achieve this, I have created a Laravel Notifications called 'CommentNotification.' After storing a comment, this function is executed: <code>$comment->sendNotificationToPostOwner();</code> in CommentController.</p>
 
-  <p>
-    The application's email notification process is configured in the ".env" file by setting the <code>QUEUE_CONNECTION</code> variable. Initially, it is set to <code>"sync"</code>, which sends emails without any server environment configuration but might slow down the application. To improve performance, an alternative method involves configuring a jobs table for <code>QUEUE_CONNECTION=database</code>. By changing <code>QUEUE_CONNECTION=sync</code> to <code>QUEUE_CONNECTION=database</code> and running <code>php artisan queue:work</code>, emails are queued in the background, enabling faster application loading.
-  </p>
-</section>
+<p>In the ".env" file, the <code>QUEUE_CONNECTION</code> is set to <code>“sync”</code> to send emails without any server environment configuration, which makes the application a little slow. However, I have also created a jobs table for <code>QUEUE_CONNECTION=database</code>. It can be achieved by just changing <code>QUEUE_CONNECTION=sync</code> to <code>QUEUE_CONNECTION=database</code> and running <code>php artisan queue:work</code> which will load the application fast.</p>
 
-<section>
-  <h2>Cleaning Old Posts</h2>
-  <p>
-    To maintain a clean forum, a rule has been established: posts that have not received any comments for one year should be soft-deleted.
-  </p>
+<p>11. To keep the forum clean, all posts that have not received a comment for 1 year should be soft deleted. To achieve this, I've created a Laravel Command named 'DeleteOldPosts' and implemented its functionality. Then, I've scheduled this command in the <code>app/Console/Kernel.php</code> file.</p>
 
-  <p>
-    This functionality is implemented using a Laravel Command named 'DeleteOldPosts'. The command's logic for deleting posts meeting the criteria has been implemented. To automate this process, the command has been scheduled in the <code>app/Console/Kernel.php</code> file.
-  </p>
 </section>
