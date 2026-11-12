@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Sultan Bayezid">
-    <title>Forum - Assignment Project</title>
+    <title>Laravel Forum</title>
     <link href="{{asset('design/css/feather.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('design/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('design/css/custom.css')}}" rel="stylesheet">
@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-primary">
     <div class="container">
-      <h4><span class="h1">P</span>roject Forum</h4>
+      <h4><span class="h1">L</span>aravel Forum</h4>
     <ul class="navbar-nav mx-auto mt-3 ">
     <form action="{{route('search')}}" method="GET" class="mb-4">
         <div class="input-group">

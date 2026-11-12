@@ -1,9 +1,28 @@
 {
-    "name": "laravel/laravel",
+    "name": "sultanbayezid/laravel-forum",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "A clean discussion forum built with Laravel 10 - posts, comments, email notifications, full-text search, email verification and automated old-post cleanup.",
+    "keywords": [
+        "laravel",
+        "forum",
+        "discussion",
+        "posts",
+        "comments",
+        "community"
+    ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Sultan Bayezid",
+            "email": "sultanbayezidai@gmail.com",
+            "homepage": "https://lastlineweb.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/SultanBayezid/Laravel-Forum/issues",
+        "source": "https://github.com/SultanBayezid/Laravel-Forum"
+    },
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",

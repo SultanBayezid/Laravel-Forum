@@ -1,5 +1,8 @@
 {
-    "private": true,
+    "name": "laravel-forum",
+    "description": "A clean discussion forum built with Laravel 10.",
+    "author": "Sultan Bayezid <sultanbayezidai@gmail.com> (https://lastlineweb.com)",
+    "license": "MIT",
     "type": "module",
     "scripts": {
         "dev": "vite",
